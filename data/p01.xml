@@ -1,0 +1,1975 @@
+<table class="wikitable" style="text-align: center">
+<tr>
+<th>PID<br />
+(hex)</th>
+<th>Data bytes returned</th>
+<th>Description</th>
+<th>Min value</th>
+<th>Max value</th>
+<th>Units</th>
+<th>Formula<sup id="cite_ref-formula_2-0" class="reference"><a href="#cite_note-formula-2"><span>[</span>a<span>]</span></a></sup></th>
+</tr>
+<tr>
+<td><tt>00</tt></td>
+<td>4</td>
+<td align="left">PIDs supported [01 - 20]</td>
+<td></td>
+<td></td>
+<td></td>
+<td align="left">Bit encoded [A7..D0] == [PID $01..PID $20] <a href="#Mode_1_PID_00">See below</a></td>
+</tr>
+<tr>
+<td><tt>01</tt></td>
+<td>4</td>
+<td align="left">Monitor status since DTCs cleared. (Includes malfunction indicator lamp (MIL) status and number of DTCs.)</td>
+<td></td>
+<td></td>
+<td></td>
+<td align="left">Bit encoded. <a href="#Mode_1_PID_01">See below</a></td>
+</tr>
+<tr>
+<td><tt>02</tt></td>
+<td>2</td>
+<td align="left">Freeze DTC</td>
+<td></td>
+<td></td>
+<td></td>
+<td align="left"></td>
+</tr>
+<tr>
+<td><tt>03</tt></td>
+<td>2</td>
+<td align="left">Fuel system status</td>
+<td></td>
+<td></td>
+<td></td>
+<td align="left">Bit encoded. <a href="#Mode_1_PID_03">See below</a></td>
+</tr>
+<tr>
+<td><tt>04</tt></td>
+<td>1</td>
+<td align="left">Calculated engine load value</td>
+<td>0</td>
+<td>100</td>
+<td>&#160;%</td>
+<td align="left">A*100/255</td>
+</tr>
+<tr>
+<td><tt>05</tt></td>
+<td>1</td>
+<td align="left">Engine coolant temperature</td>
+<td>-40</td>
+<td>215</td>
+<td>°C</td>
+<td align="left">A-40</td>
+</tr>
+<tr>
+<td><tt>06</tt></td>
+<td>1</td>
+<td align="left">Short term fuel&#160;% trim—Bank 1</td>
+<td>-100 Subtracting Fuel (Rich Condition)</td>
+<td>99.22 Adding Fuel (Lean Condition)</td>
+<td>&#160;%</td>
+<td align="left">(A-128) * 100/128</td>
+</tr>
+<tr>
+<td><tt>07</tt></td>
+<td>1</td>
+<td align="left">Long term fuel&#160;% trim—Bank 1</td>
+<td>-100 Subtracting Fuel (Rich Condition)</td>
+<td>99.22 Adding Fuel (Lean Condition)</td>
+<td>&#160;%</td>
+<td align="left">(A-128) * 100/128</td>
+</tr>
+<tr>
+<td><tt>08</tt></td>
+<td>1</td>
+<td align="left">Short term fuel&#160;% trim—Bank 2</td>
+<td>-100 Subtracting Fuel (Rich Condition)</td>
+<td>99.22 Adding Fuel (Lean Condition)</td>
+<td>&#160;%</td>
+<td align="left">(A-128) * 100/128</td>
+</tr>
+<tr>
+<td><tt>09</tt></td>
+<td>1</td>
+<td align="left">Long term fuel&#160;% trim—Bank 2</td>
+<td>-100 Subtracting Fuel (Rich Condition)</td>
+<td>99.22 Adding Fuel (Lean Condition)</td>
+<td>&#160;%</td>
+<td align="left">(A-128) * 100/128</td>
+</tr>
+<tr>
+<td><tt>0A</tt></td>
+<td>1</td>
+<td align="left">Fuel pressure</td>
+<td>0</td>
+<td>765</td>
+<td>kPa (gauge)</td>
+<td align="left">A*3</td>
+</tr>
+<tr>
+<td><tt>0B</tt></td>
+<td>1</td>
+<td align="left">Intake manifold absolute pressure</td>
+<td>0</td>
+<td>255</td>
+<td>kPa (absolute)</td>
+<td align="left">A</td>
+</tr>
+<tr>
+<td><tt>0C</tt></td>
+<td>2</td>
+<td align="left">Engine RPM</td>
+<td>0</td>
+<td>16,383.75</td>
+<td>rpm</td>
+<td align="left">((A*256)+B)/4</td>
+</tr>
+<tr>
+<td><tt>0D</tt></td>
+<td>1</td>
+<td align="left">Vehicle speed</td>
+<td>0</td>
+<td>255</td>
+<td>km/h</td>
+<td align="left">A</td>
+</tr>
+<tr>
+<td><tt>0E</tt></td>
+<td>1</td>
+<td align="left">Timing advance</td>
+<td>-64</td>
+<td>63.5</td>
+<td>° relative to #1 cylinder</td>
+<td align="left">(A-128)/2</td>
+</tr>
+<tr>
+<td><tt>0F</tt></td>
+<td>1</td>
+<td align="left">Intake air temperature</td>
+<td>-40</td>
+<td>215</td>
+<td>°C</td>
+<td align="left">A-40</td>
+</tr>
+<tr>
+<td><tt>10</tt></td>
+<td>2</td>
+<td align="left">MAF air flow rate</td>
+<td>0</td>
+<td>655.35</td>
+<td>grams/sec</td>
+<td align="left">((A*256)+B) / 100</td>
+</tr>
+<tr>
+<td><tt>11</tt></td>
+<td>1</td>
+<td align="left">Throttle position</td>
+<td>0</td>
+<td>100</td>
+<td>&#160;%</td>
+<td align="left">A*100/255</td>
+</tr>
+<tr>
+<td><tt>12</tt></td>
+<td>1</td>
+<td align="left">Commanded secondary air status</td>
+<td></td>
+<td></td>
+<td></td>
+<td align="left">Bit encoded. <a href="#Mode_1_PID_12">See below</a></td>
+</tr>
+<tr>
+<td><tt>13</tt></td>
+<td>1</td>
+<td align="left">Oxygen sensors present</td>
+<td></td>
+<td></td>
+<td></td>
+<td align="left">[A0..A3] == Bank 1, Sensors 1-4. [A4..A7] == Bank 2...</td>
+</tr>
+<tr>
+<td><tt>14</tt></td>
+<td>2</td>
+<td align="left">Bank 1, Sensor 1:<br />
+Oxygen sensor voltage,<br />
+Short term fuel trim</td>
+<td><br />
+0<br />
+-100(lean)</td>
+<td><br />
+1.275<br />
+99.2(rich)</td>
+<td>Volts<br />
+%</td>
+<td align="left">A/200<br />
+(B-128) * 100/128 (if B==$FF, sensor is not used in trim calc)</td>
+</tr>
+<tr>
+<td><tt>15</tt></td>
+<td>2</td>
+<td align="left">Bank 1, Sensor 2:<br />
+Oxygen sensor voltage,<br />
+Short term fuel trim</td>
+<td><br />
+0<br />
+-100(lean)</td>
+<td><br />
+1.275<br />
+99.2(rich)</td>
+<td>Volts<br />
+%</td>
+<td align="left">A/200<br />
+(B-128) * 100/128 (if B==$FF, sensor is not used in trim calc)</td>
+</tr>
+<tr>
+<td><tt>16</tt></td>
+<td>2</td>
+<td align="left">Bank 1, Sensor 3:<br />
+Oxygen sensor voltage,<br />
+Short term fuel trim</td>
+<td><br />
+0<br />
+-100(lean)</td>
+<td><br />
+1.275<br />
+99.2(rich)</td>
+<td>Volts<br />
+%</td>
+<td align="left">A/200<br />
+(B-128) * 100/128 (if B==$FF, sensor is not used in trim calc)</td>
+</tr>
+<tr>
+<td><tt>17</tt></td>
+<td>2</td>
+<td align="left">Bank 1, Sensor 4:<br />
+Oxygen sensor voltage,<br />
+Short term fuel trim</td>
+<td><br />
+0<br />
+-100(lean)</td>
+<td><br />
+1.275<br />
+99.2(rich)</td>
+<td>Volts<br />
+%</td>
+<td align="left">A/200<br />
+(B-128) * 100/128 (if B==$FF, sensor is not used in trim calc)</td>
+</tr>
+<tr>
+<td><tt>18</tt></td>
+<td>2</td>
+<td align="left">Bank 2, Sensor 1:<br />
+Oxygen sensor voltage,<br />
+Short term fuel trim</td>
+<td><br />
+0<br />
+-100(lean)</td>
+<td><br />
+1.275<br />
+99.2(rich)</td>
+<td>Volts<br />
+%</td>
+<td align="left">A/200<br />
+(B-128) * 100/128 (if B==$FF, sensor is not used in trim calc)</td>
+</tr>
+<tr>
+<td><tt>19</tt></td>
+<td>2</td>
+<td align="left">Bank 2, Sensor 2:<br />
+Oxygen sensor voltage,<br />
+Short term fuel trim</td>
+<td><br />
+0<br />
+-100(lean)</td>
+<td><br />
+1.275<br />
+99.2(rich)</td>
+<td>Volts<br />
+%</td>
+<td align="left">A/200<br />
+(B-128) * 100/128 (if B==$FF, sensor is not used in trim calc)</td>
+</tr>
+<tr>
+<td><tt>1A</tt></td>
+<td>2</td>
+<td align="left">Bank 2, Sensor 3:<br />
+Oxygen sensor voltage,<br />
+Short term fuel trim</td>
+<td><br />
+0<br />
+-100(lean)</td>
+<td><br />
+1.275<br />
+99.2(rich)</td>
+<td>Volts<br />
+%</td>
+<td align="left">A/200<br />
+(B-128) * 100/128 (if B==$FF, sensor is not used in trim calc)</td>
+</tr>
+<tr>
+<td><tt>1B</tt></td>
+<td>2</td>
+<td align="left">Bank 2, Sensor 4:<br />
+Oxygen sensor voltage,<br />
+Short term fuel trim</td>
+<td><br />
+0<br />
+-100(lean)</td>
+<td><br />
+1.275<br />
+99.2(rich)</td>
+<td>Volts<br />
+%</td>
+<td align="left">A/200<br />
+(B-128) * 100/128 (if B==$FF, sensor is not used in trim calc)</td>
+</tr>
+<tr>
+<td><tt>1C</tt></td>
+<td>1</td>
+<td align="left">OBD standards this vehicle conforms to</td>
+<td></td>
+<td></td>
+<td></td>
+<td align="left">Bit encoded. <a href="#Mode_1_PID_1C">See below</a></td>
+</tr>
+<tr>
+<td><tt>1D</tt></td>
+<td>1</td>
+<td align="left">Oxygen sensors present</td>
+<td></td>
+<td></td>
+<td></td>
+<td align="left">Similar to PID 13, but [A0..A7] == [B1S1, B1S2, B2S1, B2S2, B3S1, B3S2, B4S1, B4S2]</td>
+</tr>
+<tr>
+<td><tt>1E</tt></td>
+<td>1</td>
+<td align="left">Auxiliary input status</td>
+<td></td>
+<td></td>
+<td></td>
+<td align="left">A0 == Power Take Off (PTO) status (1 == active)<br />
+[A1..A7] not used</td>
+</tr>
+<tr>
+<td><tt>1F</tt></td>
+<td>2</td>
+<td align="left">Run time since engine start</td>
+<td>0</td>
+<td>65,535</td>
+<td>seconds</td>
+<td align="left">(A*256)+B</td>
+</tr>
+<tr>
+<td><tt>20</tt></td>
+<td>4</td>
+<td align="left">PIDs supported [21 - 40]</td>
+<td></td>
+<td></td>
+<td></td>
+<td align="left">Bit encoded [A7..D0] == [PID $21..PID $40] <a href="#Mode_1_PID_00">See below</a></td>
+</tr>
+<tr>
+<td><tt>21</tt></td>
+<td>2</td>
+<td align="left">Distance traveled with malfunction indicator lamp (MIL) on</td>
+<td>0</td>
+<td>65,535</td>
+<td>km</td>
+<td align="left">(A*256)+B</td>
+</tr>
+<tr>
+<td><tt>22</tt></td>
+<td>2</td>
+<td align="left">Fuel Rail Pressure (relative to manifold vacuum)</td>
+<td>0</td>
+<td>5177.265</td>
+<td>kPa</td>
+<td align="left">((A*256)+B) * 0.079</td>
+</tr>
+<tr>
+<td><tt>23</tt></td>
+<td>2</td>
+<td align="left">Fuel Rail Pressure (diesel, or gasoline direct inject)</td>
+<td>0</td>
+<td>655,350</td>
+<td>kPa (gauge)</td>
+<td align="left">((A*256)+B) * 10</td>
+</tr>
+<tr>
+<td><tt>24</tt></td>
+<td>4</td>
+<td align="left">O2S1_WR_lambda(1):<br />
+Equivalence Ratio<br />
+Voltage</td>
+<td>0<br />
+0</td>
+<td>1.999<br />
+7.999</td>
+<td>N/A<br />
+V</td>
+<td align="left">((A*256)+B)*2/65535 or ((A*256)+B)/32768<br />
+((C*256)+D)*8/65535 or ((C*256)+D)/8192</td>
+</tr>
+<tr>
+<td><tt>25</tt></td>
+<td>4</td>
+<td align="left">O2S2_WR_lambda(1):<br />
+Equivalence Ratio<br />
+Voltage</td>
+<td>0<br />
+0</td>
+<td>2<br />
+8</td>
+<td>N/A<br />
+V</td>
+<td align="left">((A*256)+B)*2/65535<br />
+((C*256)+D)*8/65535</td>
+</tr>
+<tr>
+<td><tt>26</tt></td>
+<td>4</td>
+<td align="left">O2S3_WR_lambda(1):<br />
+Equivalence Ratio<br />
+Voltage</td>
+<td>0<br />
+0</td>
+<td>2<br />
+8</td>
+<td>N/A<br />
+V</td>
+<td align="left">((A*256)+B)*2/65535<br />
+((C*256)+D)*8/65535</td>
+</tr>
+<tr>
+<td><tt>27</tt></td>
+<td>4</td>
+<td align="left">O2S4_WR_lambda(1):<br />
+Equivalence Ratio<br />
+Voltage</td>
+<td>0<br />
+0</td>
+<td>2<br />
+8</td>
+<td>N/A<br />
+V</td>
+<td align="left">((A*256)+B)*2/65535<br />
+((C*256)+D)*8/65535</td>
+</tr>
+<tr>
+<td><tt>28</tt></td>
+<td>4</td>
+<td align="left">O2S5_WR_lambda(1):<br />
+Equivalence Ratio<br />
+Voltage</td>
+<td>0<br />
+0</td>
+<td>2<br />
+8</td>
+<td>N/A<br />
+V</td>
+<td align="left">((A*256)+B)*2/65535<br />
+((C*256)+D)*8/65535</td>
+</tr>
+<tr>
+<td><tt>29</tt></td>
+<td>4</td>
+<td align="left">O2S6_WR_lambda(1):<br />
+Equivalence Ratio<br />
+Voltage</td>
+<td>0<br />
+0</td>
+<td>2<br />
+8</td>
+<td>N/A<br />
+V</td>
+<td align="left">((A*256)+B)*2/65535<br />
+((C*256)+D)*8/65535</td>
+</tr>
+<tr>
+<td><tt>2A</tt></td>
+<td>4</td>
+<td align="left">O2S7_WR_lambda(1):<br />
+Equivalence Ratio<br />
+Voltage</td>
+<td>0<br />
+0</td>
+<td>2<br />
+8</td>
+<td>N/A<br />
+V</td>
+<td align="left">((A*256)+B)*2/65535<br />
+((C*256)+D)*8/65535</td>
+</tr>
+<tr>
+<td><tt>2B</tt></td>
+<td>4</td>
+<td align="left">O2S8_WR_lambda(1):<br />
+Equivalence Ratio<br />
+Voltage</td>
+<td>0<br />
+0</td>
+<td>2<br />
+8</td>
+<td>N/A<br />
+V</td>
+<td align="left">((A*256)+B)*2/65535<br />
+((C*256)+D)*8/65535</td>
+</tr>
+<tr>
+<td><tt>2C</tt></td>
+<td>1</td>
+<td align="left">Commanded <a href="/wiki/Exhaust_gas_recirculation" title="Exhaust gas recirculation">EGR</a></td>
+<td>0</td>
+<td>100</td>
+<td>&#160;%</td>
+<td align="left">A*100/255</td>
+</tr>
+<tr>
+<td><tt>2D</tt></td>
+<td>1</td>
+<td align="left">EGR Error</td>
+<td>-100</td>
+<td>99.22</td>
+<td>&#160;%</td>
+<td align="left">(A-128) * 100/128</td>
+</tr>
+<tr>
+<td><tt>2E</tt></td>
+<td>1</td>
+<td align="left">Commanded evaporative purge</td>
+<td>0</td>
+<td>100</td>
+<td>&#160;%</td>
+<td align="left">A*100/255</td>
+</tr>
+<tr>
+<td><tt>2F</tt></td>
+<td>1</td>
+<td align="left">Fuel Level Input</td>
+<td>0</td>
+<td>100</td>
+<td>&#160;%</td>
+<td align="left">A*100/255</td>
+</tr>
+<tr>
+<td><tt>30</tt></td>
+<td>1</td>
+<td align="left"># of warm-ups since codes cleared</td>
+<td>0</td>
+<td>255</td>
+<td>N/A</td>
+<td align="left">A</td>
+</tr>
+<tr>
+<td><tt>31</tt></td>
+<td>2</td>
+<td align="left">Distance traveled since codes cleared</td>
+<td>0</td>
+<td>65,535</td>
+<td>km</td>
+<td align="left">(A*256)+B</td>
+</tr>
+<tr>
+<td><tt>32</tt></td>
+<td>2</td>
+<td align="left">Evap. System Vapor Pressure</td>
+<td>-8,192</td>
+<td>8,192</td>
+<td>Pa</td>
+<td align="left">((A*256)+B)/4 (A and B are <a href="/wiki/Two%27s_complement" title="Two's complement">two's complement</a> signed)</td>
+</tr>
+<tr>
+<td><tt>33</tt></td>
+<td>1</td>
+<td align="left">Barometric pressure</td>
+<td>0</td>
+<td>255</td>
+<td>kPa (Absolute)</td>
+<td align="left">A</td>
+</tr>
+<tr>
+<td><tt>34</tt></td>
+<td>4</td>
+<td align="left">O2S1_WR_lambda(1):<br />
+Equivalence Ratio<br />
+Current</td>
+<td>0<br />
+-128</td>
+<td>1.999<br />
+127.99</td>
+<td>N/A<br />
+mA</td>
+<td align="left">((A*256)+B)/32,768<br />
+((C*256)+D)/256 - 128</td>
+</tr>
+<tr>
+<td><tt>35</tt></td>
+<td>4</td>
+<td align="left">O2S2_WR_lambda(1):<br />
+Equivalence Ratio<br />
+Current</td>
+<td>0<br />
+-128</td>
+<td>2<br />
+128</td>
+<td>N/A<br />
+mA</td>
+<td align="left">((A*256)+B)/32,768<br />
+((C*256)+D)/256 - 128</td>
+</tr>
+<tr>
+<td><tt>36</tt></td>
+<td>4</td>
+<td align="left">O2S3_WR_lambda(1):<br />
+Equivalence Ratio<br />
+Current</td>
+<td>0<br />
+-128</td>
+<td>2<br />
+128</td>
+<td>N/A<br />
+mA</td>
+<td align="left">((A*256)+B)/32768<br />
+((C*256)+D)/256 - 128</td>
+</tr>
+<tr>
+<td><tt>37</tt></td>
+<td>4</td>
+<td align="left">O2S4_WR_lambda(1):<br />
+Equivalence Ratio<br />
+Current</td>
+<td>0<br />
+-128</td>
+<td>2<br />
+128</td>
+<td>N/A<br />
+mA</td>
+<td align="left">((A*256)+B)/32,768<br />
+((C*256)+D)/256 - 128</td>
+</tr>
+<tr>
+<td><tt>38</tt></td>
+<td>4</td>
+<td align="left">O2S5_WR_lambda(1):<br />
+Equivalence Ratio<br />
+Current</td>
+<td>0<br />
+-128</td>
+<td>2<br />
+128</td>
+<td>N/A<br />
+mA</td>
+<td align="left">((A*256)+B)/32,768<br />
+((C*256)+D)/256 - 128</td>
+</tr>
+<tr>
+<td><tt>39</tt></td>
+<td>4</td>
+<td align="left">O2S6_WR_lambda(1):<br />
+Equivalence Ratio<br />
+Current</td>
+<td>0<br />
+-128</td>
+<td>2<br />
+128</td>
+<td>N/A<br />
+mA</td>
+<td align="left">((A*256)+B)/32,768<br />
+((C*256)+D)/256 - 128</td>
+</tr>
+<tr>
+<td><tt>3A</tt></td>
+<td>4</td>
+<td align="left">O2S7_WR_lambda(1):<br />
+Equivalence Ratio<br />
+Current</td>
+<td>0<br />
+-128</td>
+<td>2<br />
+128</td>
+<td>N/A<br />
+mA</td>
+<td align="left">((A*256)+B)/32,768<br />
+((C*256)+D)/256 - 128</td>
+</tr>
+<tr>
+<td><tt>3B</tt></td>
+<td>4</td>
+<td align="left">O2S8_WR_lambda(1):<br />
+Equivalence Ratio<br />
+Current</td>
+<td>0<br />
+-128</td>
+<td>2<br />
+128</td>
+<td>N/A<br />
+mA</td>
+<td align="left">((A*256)+B)/32,768<br />
+((C*256)+D)/256 - 128</td>
+</tr>
+<tr>
+<td><tt>3C</tt></td>
+<td>2</td>
+<td align="left">Catalyst Temperature<br />
+Bank 1, Sensor 1</td>
+<td>-40</td>
+<td>6,513.5</td>
+<td>°C</td>
+<td align="left">((A*256)+B)/10 - 40</td>
+</tr>
+<tr>
+<td><tt>3D</tt></td>
+<td>2</td>
+<td align="left">Catalyst Temperature<br />
+Bank 2, Sensor 1</td>
+<td>-40</td>
+<td>6,513.5</td>
+<td>°C</td>
+<td align="left">((A*256)+B)/10 - 40</td>
+</tr>
+<tr>
+<td><tt>3E</tt></td>
+<td>2</td>
+<td align="left">Catalyst Temperature<br />
+Bank 1, Sensor 2</td>
+<td>-40</td>
+<td>6,513.5</td>
+<td>°C</td>
+<td align="left">((A*256)+B)/10 - 40</td>
+</tr>
+<tr>
+<td><tt>3F</tt></td>
+<td>2</td>
+<td align="left">Catalyst Temperature<br />
+Bank 2, Sensor 2</td>
+<td>-40</td>
+<td>6,513.5</td>
+<td>°C</td>
+<td align="left">((A*256)+B)/10 - 40</td>
+</tr>
+<tr>
+<td><tt>40</tt></td>
+<td>4</td>
+<td align="left">PIDs supported [41 - 60]</td>
+<td></td>
+<td></td>
+<td></td>
+<td align="left">Bit encoded [A7..D0] == [PID $41..PID $60] <a href="#Mode_1_PID_00">See below</a></td>
+</tr>
+<tr>
+<td><tt>41</tt></td>
+<td>4</td>
+<td align="left">Monitor status this drive cycle</td>
+<td></td>
+<td></td>
+<td></td>
+<td align="left">Bit encoded. <a href="#Mode_1_PID_41">See below</a></td>
+</tr>
+<tr>
+<td><tt>42</tt></td>
+<td>2</td>
+<td align="left">Control module voltage</td>
+<td>0</td>
+<td>65.535</td>
+<td>V</td>
+<td align="left">((A*256)+B)/1000</td>
+</tr>
+<tr>
+<td><tt>43</tt></td>
+<td>2</td>
+<td align="left">Absolute load value</td>
+<td>0</td>
+<td>25,700</td>
+<td>&#160;%</td>
+<td align="left">((A*256)+B)*100/255</td>
+</tr>
+<tr>
+<td><tt>44</tt></td>
+<td>2</td>
+<td align="left">Fuel/Air commanded equivalence ratio</td>
+<td>0</td>
+<td>2</td>
+<td>N/A</td>
+<td align="left">((A*256)+B)/32768</td>
+</tr>
+<tr>
+<td><tt>45</tt></td>
+<td>1</td>
+<td align="left">Relative throttle position</td>
+<td>0</td>
+<td>100</td>
+<td>&#160;%</td>
+<td align="left">A*100/255</td>
+</tr>
+<tr>
+<td><tt>46</tt></td>
+<td>1</td>
+<td align="left">Ambient air temperature</td>
+<td>-40</td>
+<td>215</td>
+<td>°C</td>
+<td align="left">A-40</td>
+</tr>
+<tr>
+<td><tt>47</tt></td>
+<td>1</td>
+<td align="left">Absolute throttle position B</td>
+<td>0</td>
+<td>100</td>
+<td>&#160;%</td>
+<td align="left">A*100/255</td>
+</tr>
+<tr>
+<td><tt>48</tt></td>
+<td>1</td>
+<td align="left">Absolute throttle position C</td>
+<td>0</td>
+<td>100</td>
+<td>&#160;%</td>
+<td align="left">A*100/255</td>
+</tr>
+<tr>
+<td><tt>49</tt></td>
+<td>1</td>
+<td align="left">Accelerator pedal position D</td>
+<td>0</td>
+<td>100</td>
+<td>&#160;%</td>
+<td align="left">A*100/255</td>
+</tr>
+<tr>
+<td><tt>4A</tt></td>
+<td>1</td>
+<td align="left">Accelerator pedal position E</td>
+<td>0</td>
+<td>100</td>
+<td>&#160;%</td>
+<td align="left">A*100/255</td>
+</tr>
+<tr>
+<td><tt>4B</tt></td>
+<td>1</td>
+<td align="left">Accelerator pedal position F</td>
+<td>0</td>
+<td>100</td>
+<td>&#160;%</td>
+<td align="left">A*100/255</td>
+</tr>
+<tr>
+<td><tt>4C</tt></td>
+<td>1</td>
+<td align="left">Commanded throttle actuator</td>
+<td>0</td>
+<td>100</td>
+<td>&#160;%</td>
+<td align="left">A*100/255</td>
+</tr>
+<tr>
+<td><tt>4D</tt></td>
+<td>2</td>
+<td align="left">Time run with MIL on</td>
+<td>0</td>
+<td>65,535</td>
+<td>minutes</td>
+<td align="left">(A*256)+B</td>
+</tr>
+<tr>
+<td><tt>4E</tt></td>
+<td>2</td>
+<td align="left">Time since trouble codes cleared</td>
+<td>0</td>
+<td>65,535</td>
+<td>minutes</td>
+<td align="left">(A*256)+B</td>
+</tr>
+<tr>
+<td><tt>4F</tt></td>
+<td>4</td>
+<td align="left">Maximum value for equivalence ratio, oxygen sensor voltage, oxygen sensor current, and intake manifold absolute pressure</td>
+<td>0, 0, 0, 0</td>
+<td>255, 255, 255, 2550</td>
+<td>, V, mA, kPa</td>
+<td align="left">A, B, C, D*10</td>
+</tr>
+<tr>
+<td><tt>50</tt></td>
+<td>4</td>
+<td align="left">Maximum value for air flow rate from mass air flow sensor</td>
+<td>0</td>
+<td>2550</td>
+<td>g/s</td>
+<td align="left">A*10, B, C, and D are reserved for future use</td>
+</tr>
+<tr>
+<td><tt>51</tt></td>
+<td>1</td>
+<td align="left">Fuel Type</td>
+<td></td>
+<td></td>
+<td></td>
+<td align="left">From fuel type table <a href="#Fuel_Type_Coding">see below</a></td>
+</tr>
+<tr>
+<td><tt>52</tt></td>
+<td>1</td>
+<td align="left">Ethanol fuel&#160;%</td>
+<td>0</td>
+<td>100</td>
+<td>&#160;%</td>
+<td align="left">A*100/255</td>
+</tr>
+<tr>
+<td><tt>53</tt></td>
+<td>2</td>
+<td align="left">Absolute Evap system Vapor Pressure</td>
+<td>0</td>
+<td>327.675</td>
+<td>kPa</td>
+<td align="left">((A*256)+B)/200</td>
+</tr>
+<tr>
+<td><tt>54</tt></td>
+<td>2</td>
+<td align="left">Evap system vapor pressure</td>
+<td>-32,767</td>
+<td>32,768</td>
+<td>Pa</td>
+<td align="left">((A*256)+B)-32767</td>
+</tr>
+<tr>
+<td><tt>55</tt></td>
+<td>2</td>
+<td align="left">Short term secondary oxygen sensor trim bank 1 and bank 3</td>
+<td>-100</td>
+<td>99.22</td>
+<td>&#160;%</td>
+<td align="left">(A-128)*100/128<br />
+(B-128)*100/128</td>
+</tr>
+<tr>
+<td><tt>56</tt></td>
+<td>2</td>
+<td align="left">Long term secondary oxygen sensor trim bank 1 and bank 3</td>
+<td>-100</td>
+<td>99.22</td>
+<td>&#160;%</td>
+<td align="left">(A-128)*100/128<br />
+(B-128)*100/128</td>
+</tr>
+<tr>
+<td><tt>57</tt></td>
+<td>2</td>
+<td align="left">Short term secondary oxygen sensor trim bank 2 and bank 4</td>
+<td>-100</td>
+<td>99.22</td>
+<td>&#160;%</td>
+<td align="left">(A-128)*100/128<br />
+(B-128)*100/128</td>
+</tr>
+<tr>
+<td><tt>58</tt></td>
+<td>2</td>
+<td align="left">Long term secondary oxygen sensor trim bank 2 and bank 4</td>
+<td>-100</td>
+<td>99.22</td>
+<td>&#160;%</td>
+<td align="left">(A-128)*100/128<br />
+(B-128)*100/128</td>
+</tr>
+<tr>
+<td><tt>59</tt></td>
+<td>2</td>
+<td align="left">Fuel rail pressure (absolute)</td>
+<td>0</td>
+<td>655,350</td>
+<td>kPa</td>
+<td align="left">((A*256)+B) * 10</td>
+</tr>
+<tr>
+<td><tt>5A</tt></td>
+<td>1</td>
+<td align="left">Relative accelerator pedal position</td>
+<td>0</td>
+<td>100</td>
+<td>&#160;%</td>
+<td align="left">A*100/255</td>
+</tr>
+<tr>
+<td><tt>5B</tt></td>
+<td>1</td>
+<td align="left">Hybrid battery pack remaining life</td>
+<td>0</td>
+<td>100</td>
+<td>&#160;%</td>
+<td align="left">A*100/255</td>
+</tr>
+<tr>
+<td><tt>5C</tt></td>
+<td>1</td>
+<td align="left">Engine oil temperature</td>
+<td>-40</td>
+<td>210</td>
+<td>°C</td>
+<td align="left">A - 40</td>
+</tr>
+<tr>
+<td><tt>5D</tt></td>
+<td>2</td>
+<td align="left">Fuel injection timing</td>
+<td>-210.00</td>
+<td>301.992</td>
+<td>°</td>
+<td align="left">(((A*256)+B)-26,880)/128</td>
+</tr>
+<tr>
+<td><tt>5E</tt></td>
+<td>2</td>
+<td align="left">Engine fuel rate</td>
+<td>0</td>
+<td>3212.75</td>
+<td>L/h</td>
+<td align="left">((A*256)+B)*0.05</td>
+</tr>
+<tr>
+<td><tt>5F</tt></td>
+<td>1</td>
+<td align="left">Emission requirements to which vehicle is designed</td>
+<td></td>
+<td></td>
+<td></td>
+<td align="left">Bit Encoded</td>
+</tr>
+<tr>
+<td><tt>60</tt></td>
+<td>4</td>
+<td align="left">PIDs supported [61 - 80]</td>
+<td></td>
+<td></td>
+<td></td>
+<td align="left">Bit encoded [A7..D0] == [PID $61..PID $80] <a href="#Mode_1_PID_00">See below</a></td>
+</tr>
+<tr>
+<td><tt>61</tt></td>
+<td>1</td>
+<td align="left">Driver's demand engine - percent torque</td>
+<td>-125</td>
+<td>125</td>
+<td>&#160;%</td>
+<td align="left">A-125</td>
+</tr>
+<tr>
+<td><tt>62</tt></td>
+<td>1</td>
+<td align="left">Actual engine - percent torque</td>
+<td>-125</td>
+<td>125</td>
+<td>&#160;%</td>
+<td align="left">A-125</td>
+</tr>
+<tr>
+<td><tt>63</tt></td>
+<td>2</td>
+<td align="left">Engine reference torque</td>
+<td>0</td>
+<td>65,535</td>
+<td>Nm</td>
+<td align="left">A*256+B</td>
+</tr>
+<tr>
+<td><tt>64</tt></td>
+<td>5</td>
+<td align="left">Engine percent torque data</td>
+<td>-125</td>
+<td>125</td>
+<td>&#160;%</td>
+<td align="left">A-125 Idle<br />
+B-125 Engine point 1<br />
+C-125 Engine point 2<br />
+D-125 Engine point 3<br />
+E-125 Engine point 4</td>
+</tr>
+<tr>
+<td><tt>65</tt></td>
+<td>2</td>
+<td align="left">Auxiliary input / output supported</td>
+<td></td>
+<td></td>
+<td></td>
+<td align="left">Bit Encoded</td>
+</tr>
+<tr>
+<td><tt>66</tt></td>
+<td>5</td>
+<td align="left">Mass air flow sensor</td>
+<td></td>
+<td></td>
+<td></td>
+<td align="left"></td>
+</tr>
+<tr>
+<td><tt>67</tt></td>
+<td>3</td>
+<td align="left">Engine coolant temperature</td>
+<td></td>
+<td></td>
+<td></td>
+<td align="left"></td>
+</tr>
+<tr>
+<td><tt>68</tt></td>
+<td>7</td>
+<td align="left">Intake air temperature sensor</td>
+<td></td>
+<td></td>
+<td></td>
+<td align="left"></td>
+</tr>
+<tr>
+<td><tt>69</tt></td>
+<td>7</td>
+<td align="left">Commanded EGR and EGR Error</td>
+<td></td>
+<td></td>
+<td></td>
+<td align="left"></td>
+</tr>
+<tr>
+<td><tt>6A</tt></td>
+<td>5</td>
+<td align="left">Commanded Diesel intake air flow control and relative intake air flow position</td>
+<td></td>
+<td></td>
+<td></td>
+<td align="left"></td>
+</tr>
+<tr>
+<td><tt>6B</tt></td>
+<td>5</td>
+<td align="left">Exhaust gas recirculation temperature</td>
+<td></td>
+<td></td>
+<td></td>
+<td align="left"></td>
+</tr>
+<tr>
+<td><tt>6C</tt></td>
+<td>5</td>
+<td align="left">Commanded throttle actuator control and relative throttle position</td>
+<td></td>
+<td></td>
+<td></td>
+<td align="left"></td>
+</tr>
+<tr>
+<td><tt>6D</tt></td>
+<td>6</td>
+<td align="left">Fuel pressure control system</td>
+<td></td>
+<td></td>
+<td></td>
+<td align="left"></td>
+</tr>
+<tr>
+<td><tt>6E</tt></td>
+<td>5</td>
+<td align="left">Injection pressure control system</td>
+<td></td>
+<td></td>
+<td></td>
+<td align="left"></td>
+</tr>
+<tr>
+<td><tt>6F</tt></td>
+<td>3</td>
+<td align="left">Turbocharger compressor inlet pressure</td>
+<td></td>
+<td></td>
+<td></td>
+<td align="left"></td>
+</tr>
+<tr>
+<td><tt>70</tt></td>
+<td>9</td>
+<td align="left">Boost pressure control</td>
+<td></td>
+<td></td>
+<td></td>
+<td align="left"></td>
+</tr>
+<tr>
+<td><tt>71</tt></td>
+<td>5</td>
+<td align="left">Variable Geometry turbo (VGT) control</td>
+<td></td>
+<td></td>
+<td></td>
+<td align="left"></td>
+</tr>
+<tr>
+<td><tt>72</tt></td>
+<td>5</td>
+<td align="left">Wastegate control</td>
+<td></td>
+<td></td>
+<td></td>
+<td align="left"></td>
+</tr>
+<tr>
+<td><tt>73</tt></td>
+<td>5</td>
+<td align="left">Exhaust pressure</td>
+<td></td>
+<td></td>
+<td></td>
+<td align="left"></td>
+</tr>
+<tr>
+<td><tt>74</tt></td>
+<td>5</td>
+<td align="left">Turbocharger RPM</td>
+<td></td>
+<td></td>
+<td></td>
+<td align="left"></td>
+</tr>
+<tr>
+<td><tt>75</tt></td>
+<td>7</td>
+<td align="left">Turbocharger temperature</td>
+<td></td>
+<td></td>
+<td></td>
+<td align="left"></td>
+</tr>
+<tr>
+<td><tt>76</tt></td>
+<td>7</td>
+<td align="left">Turbocharger temperature</td>
+<td></td>
+<td></td>
+<td></td>
+<td align="left"></td>
+</tr>
+<tr>
+<td><tt>77</tt></td>
+<td>5</td>
+<td align="left">Charge air cooler temperature (CACT)</td>
+<td></td>
+<td></td>
+<td></td>
+<td align="left"></td>
+</tr>
+<tr>
+<td><tt>78</tt></td>
+<td>9</td>
+<td align="left">Exhaust Gas temperature (EGT) Bank 1</td>
+<td></td>
+<td></td>
+<td></td>
+<td align="left">Special PID. <a href="#Mode_1_PID_78">See below</a></td>
+</tr>
+<tr>
+<td><tt>79</tt></td>
+<td>9</td>
+<td align="left">Exhaust Gas temperature (EGT) Bank 2</td>
+<td></td>
+<td></td>
+<td></td>
+<td align="left">Special PID. <a href="#Mode_1_PID_78">See below</a></td>
+</tr>
+<tr>
+<td><tt>7A</tt></td>
+<td>7</td>
+<td align="left">Diesel particulate filter (DPF)</td>
+<td></td>
+<td></td>
+<td></td>
+<td align="left"></td>
+</tr>
+<tr>
+<td><tt>7B</tt></td>
+<td>7</td>
+<td align="left">Diesel particulate filter (DPF)</td>
+<td></td>
+<td></td>
+<td></td>
+<td align="left"></td>
+</tr>
+<tr>
+<td><tt>7C</tt></td>
+<td>9</td>
+<td align="left">Diesel Particulate filter (DPF) temperature</td>
+<td></td>
+<td></td>
+<td></td>
+<td align="left"></td>
+</tr>
+<tr>
+<td><tt>7D</tt></td>
+<td>1</td>
+<td align="left">NOx NTE control area status</td>
+<td></td>
+<td></td>
+<td></td>
+<td align="left"></td>
+</tr>
+<tr>
+<td><tt>7E</tt></td>
+<td>1</td>
+<td align="left">PM NTE control area status</td>
+<td></td>
+<td></td>
+<td></td>
+<td align="left"></td>
+</tr>
+<tr>
+<td><tt>7F</tt></td>
+<td>13</td>
+<td align="left">Engine run time</td>
+<td></td>
+<td></td>
+<td></td>
+<td align="left"></td>
+</tr>
+<tr>
+<td><tt>80</tt></td>
+<td>4</td>
+<td align="left">PIDs supported [81 - A0]</td>
+<td></td>
+<td></td>
+<td></td>
+<td align="left">Bit encoded [A7..D0] == [PID $81..PID $A0] <a href="#Mode_1_PID_00">See below</a></td>
+</tr>
+<tr>
+<td><tt>81</tt></td>
+<td>21</td>
+<td align="left">Engine run time for Auxiliary Emissions Control Device(AECD)</td>
+<td></td>
+<td></td>
+<td></td>
+<td align="left"></td>
+</tr>
+<tr>
+<td><tt>82</tt></td>
+<td>21</td>
+<td align="left">Engine run time for Auxiliary Emissions Control Device(AECD)</td>
+<td></td>
+<td></td>
+<td></td>
+<td align="left"></td>
+</tr>
+<tr>
+<td><tt>83</tt></td>
+<td>5</td>
+<td align="left">NOx sensor</td>
+<td></td>
+<td></td>
+<td></td>
+<td align="left"></td>
+</tr>
+<tr>
+<td><tt>84</tt></td>
+<td></td>
+<td align="left">Manifold surface temperature</td>
+<td></td>
+<td></td>
+<td></td>
+<td align="left"></td>
+</tr>
+<tr>
+<td><tt>85</tt></td>
+<td></td>
+<td align="left">NOx reagent system</td>
+<td></td>
+<td></td>
+<td></td>
+<td align="left"></td>
+</tr>
+<tr>
+<td><tt>86</tt></td>
+<td></td>
+<td align="left">Particulate matter (PM) sensor</td>
+<td></td>
+<td></td>
+<td></td>
+<td align="left"></td>
+</tr>
+<tr>
+<td><tt>87</tt></td>
+<td></td>
+<td align="left">Intake manifold absolute pressure</td>
+<td></td>
+<td></td>
+<td></td>
+<td align="left"></td>
+</tr>
+<tr>
+<td><tt>A0</tt></td>
+<td>4</td>
+<td align="left">PIDs supported [A1 - C0]</td>
+<td></td>
+<td></td>
+<td></td>
+<td align="left">Bit encoded [A7..D0] == [PID $A1..PID $C0] <a href="#Mode_1_PID_00">See below</a></td>
+</tr>
+<tr>
+<td><tt>C0</tt></td>
+<td>4</td>
+<td align="left">PIDs supported [C1 - E0]</td>
+<td></td>
+<td></td>
+<td></td>
+<td align="left">Bit encoded [A7..D0] == [PID $C1..PID $E0] <a href="#Mode_1_PID_00">See below</a></td>
+</tr>
+<tr>
+<td><tt>C3</tt></td>
+<td>&#160;?</td>
+<td align="left">&#160;?</td>
+<td>&#160;?</td>
+<td>&#160;?</td>
+<td>&#160;?</td>
+<td align="left">Returns numerous data, including Drive Condition ID and Engine Speed*</td>
+</tr>
+<tr>
+<td><tt>C4</tt></td>
+<td>&#160;?</td>
+<td align="left">&#160;?</td>
+<td>&#160;?</td>
+<td>&#160;?</td>
+<td>&#160;?</td>
+<td align="left">B5 is Engine Idle Request<br />
+B6 is Engine Stop Request*</td>
+</tr>
+<tr>
+<th>PID<br />
+(hex)</th>
+<th>Data bytes returned</th>
+<th>Description</th>
+<th>Min value</th>
+<th>Max value</th>
+<th>Units</th>
+<th>Formula<sup id="cite_ref-formula_2-1" class="reference"><a href="#cite_note-formula-2"><span>[</span>a<span>]</span></a></sup></th>
+</tr>
+</table>
+<h3><span class="mw-headline" id="Mode_02">Mode <tt>02</tt></span><span class="mw-editsection"><span class="mw-editsection-bracket">[</span><a href="/w/index.php?title=OBD-II_PIDs&amp;action=edit&amp;section=4" title="Edit section: Mode 02">edit</a><span class="mw-editsection-bracket">]</span></span></h3>
+<p>Mode <tt>02</tt> accepts the same PIDs as mode <tt>01</tt>, with the same meaning, but information given is from when the freeze frame was created.</p>
+<p>You have to send the frame number in the data section of the message.</p>
+<table class="wikitable" style="text-align: center">
+<tr>
+<th>PID<br />
+(hex)</th>
+<th>Data bytes returned</th>
+<th>Description</th>
+<th>Min value</th>
+<th>Max value</th>
+<th>Units</th>
+<th>Formula<sup id="cite_ref-formula_2-2" class="reference"><a href="#cite_note-formula-2"><span>[</span>a<span>]</span></a></sup></th>
+</tr>
+<tr>
+<td><tt>02</tt></td>
+<td>2</td>
+<td align="left">DTC that caused freeze frame to be stored.</td>
+<td></td>
+<td></td>
+<td></td>
+<td align="left">BCD encoded. <a href="#Mode_3_.28no_PID_required.29">Decoded as in mode 3</a></td>
+</tr>
+</table>
+<h3><span class="mw-headline" id="Mode_03">Mode <tt>03</tt></span><span class="mw-editsection"><span class="mw-editsection-bracket">[</span><a href="/w/index.php?title=OBD-II_PIDs&amp;action=edit&amp;section=5" title="Edit section: Mode 03">edit</a><span class="mw-editsection-bracket">]</span></span></h3>
+<table class="wikitable" style="text-align: center">
+<tr>
+<th>PID<br />
+(hex)</th>
+<th>Data bytes returned</th>
+<th>Description</th>
+<th>Min value</th>
+<th>Max value</th>
+<th>Units</th>
+<th>Formula<sup id="cite_ref-formula_2-3" class="reference"><a href="#cite_note-formula-2"><span>[</span>a<span>]</span></a></sup></th>
+</tr>
+<tr>
+<td>N/A</td>
+<td>n*6</td>
+<td align="left">Request trouble codes</td>
+<td></td>
+<td></td>
+<td></td>
+<td align="left">3 codes per message frame. <a href="#Mode_3_.28no_PID_required.29">See below</a></td>
+</tr>
+</table>
+<h3><span class="mw-headline" id="Mode_04">Mode <tt>04</tt></span><span class="mw-editsection"><span class="mw-editsection-bracket">[</span><a href="/w/index.php?title=OBD-II_PIDs&amp;action=edit&amp;section=6" title="Edit section: Mode 04">edit</a><span class="mw-editsection-bracket">]</span></span></h3>
+<table class="wikitable" style="text-align: center">
+<tr>
+<th>PID<br />
+(hex)</th>
+<th>Data bytes returned</th>
+<th>Description</th>
+<th>Min value</th>
+<th>Max value</th>
+<th>Units</th>
+<th>Formula<sup id="cite_ref-formula_2-4" class="reference"><a href="#cite_note-formula-2"><span>[</span>a<span>]</span></a></sup></th>
+</tr>
+<tr>
+<td>N/A</td>
+<td>0</td>
+<td align="left">Clear trouble codes / Malfunction indicator lamp (MIL) / Check engine light</td>
+<td></td>
+<td></td>
+<td></td>
+<td align="left">Clears all stored trouble codes and turns the MIL off.</td>
+</tr>
+</table>
+<h3><span class="mw-headline" id="Mode_05">Mode <tt>05</tt></span><span class="mw-editsection"><span class="mw-editsection-bracket">[</span><a href="/w/index.php?title=OBD-II_PIDs&amp;action=edit&amp;section=7" title="Edit section: Mode 05">edit</a><span class="mw-editsection-bracket">]</span></span></h3>
+<table class="wikitable" style="text-align: center">
+<tr>
+<th>PID<br />
+(hex)</th>
+<th>Data bytes returned</th>
+<th>Description</th>
+<th>Min value</th>
+<th>Max value</th>
+<th>Units</th>
+<th>Formula<sup id="cite_ref-formula_2-5" class="reference"><a href="#cite_note-formula-2"><span>[</span>a<span>]</span></a></sup></th>
+</tr>
+<tr>
+<td><tt>0100</tt></td>
+<td></td>
+<td align="left">OBD Monitor IDs supported ($01 – $20)</td>
+<td></td>
+<td></td>
+<td></td>
+<td align="left"></td>
+</tr>
+<tr>
+<td><tt>0101</tt></td>
+<td></td>
+<td align="left">O2 Sensor Monitor Bank 1 Sensor 1</td>
+<td>0.00</td>
+<td>1.275</td>
+<td>Volts</td>
+<td align="left">0.005 Rich to lean sensor threshold voltage</td>
+</tr>
+<tr>
+<td><tt>0102</tt></td>
+<td></td>
+<td align="left">O2 Sensor Monitor Bank 1 Sensor 2</td>
+<td>0.00</td>
+<td>1.275</td>
+<td>Volts</td>
+<td align="left">0.005 Rich to lean sensor threshold voltage</td>
+</tr>
+<tr>
+<td><tt>0103</tt></td>
+<td></td>
+<td align="left">O2 Sensor Monitor Bank 1 Sensor 3</td>
+<td>0.00</td>
+<td>1.275</td>
+<td>Volts</td>
+<td align="left">0.005 Rich to lean sensor threshold voltage</td>
+</tr>
+<tr>
+<td><tt>0104</tt></td>
+<td></td>
+<td align="left">O2 Sensor Monitor Bank 1 Sensor 4</td>
+<td>0.00</td>
+<td>1.275</td>
+<td>Volts</td>
+<td align="left">0.005 Rich to lean sensor threshold voltage</td>
+</tr>
+<tr>
+<td><tt>0105</tt></td>
+<td></td>
+<td align="left">O2 Sensor Monitor Bank 2 Sensor 1</td>
+<td>0.00</td>
+<td>1.275</td>
+<td>Volts</td>
+<td align="left">0.005 Rich to lean sensor threshold voltage</td>
+</tr>
+<tr>
+<td><tt>0106</tt></td>
+<td></td>
+<td align="left">O2 Sensor Monitor Bank 2 Sensor 2</td>
+<td>0.00</td>
+<td>1.275</td>
+<td>Volts</td>
+<td align="left">0.005 Rich to lean sensor threshold voltage</td>
+</tr>
+<tr>
+<td><tt>0107</tt></td>
+<td></td>
+<td align="left">O2 Sensor Monitor Bank 2 Sensor 3</td>
+<td>0.00</td>
+<td>1.275</td>
+<td>Volts</td>
+<td align="left">0.005 Rich to lean sensor threshold voltage</td>
+</tr>
+<tr>
+<td><tt>0108</tt></td>
+<td></td>
+<td align="left">O2 Sensor Monitor Bank 2 Sensor 4</td>
+<td>0.00</td>
+<td>1.275</td>
+<td>Volts</td>
+<td align="left">0.005 Rich to lean sensor threshold voltage</td>
+</tr>
+<tr>
+<td><tt>0109</tt></td>
+<td></td>
+<td align="left">O2 Sensor Monitor Bank 3 Sensor 1</td>
+<td>0.00</td>
+<td>1.275</td>
+<td>Volts</td>
+<td align="left">0.005 Rich to lean sensor threshold voltage</td>
+</tr>
+<tr>
+<td><tt>010A</tt></td>
+<td></td>
+<td align="left">O2 Sensor Monitor Bank 3 Sensor 2</td>
+<td>0.00</td>
+<td>1.275</td>
+<td>Volts</td>
+<td align="left">0.005 Rich to lean sensor threshold voltage</td>
+</tr>
+<tr>
+<td><tt>010B</tt></td>
+<td></td>
+<td align="left">O2 Sensor Monitor Bank 3 Sensor 3</td>
+<td>0.00</td>
+<td>1.275</td>
+<td>Volts</td>
+<td align="left">0.005 Rich to lean sensor threshold voltage</td>
+</tr>
+<tr>
+<td><tt>010C</tt></td>
+<td></td>
+<td align="left">O2 Sensor Monitor Bank 3 Sensor 4</td>
+<td>0.00</td>
+<td>1.275</td>
+<td>Volts</td>
+<td align="left">0.005 Rich to lean sensor threshold voltage</td>
+</tr>
+<tr>
+<td><tt>010D</tt></td>
+<td></td>
+<td align="left">O2 Sensor Monitor Bank 4 Sensor 1</td>
+<td>0.00</td>
+<td>1.275</td>
+<td>Volts</td>
+<td align="left">0.005 Rich to lean sensor threshold voltage</td>
+</tr>
+<tr>
+<td><tt>010E</tt></td>
+<td></td>
+<td align="left">O2 Sensor Monitor Bank 4 Sensor 2</td>
+<td>0.00</td>
+<td>1.275</td>
+<td>Volts</td>
+<td align="left">0.005 Rich to lean sensor threshold voltage</td>
+</tr>
+<tr>
+<td><tt>010F</tt></td>
+<td></td>
+<td align="left">O2 Sensor Monitor Bank 4 Sensor 3</td>
+<td>0.00</td>
+<td>1.275</td>
+<td>Volts</td>
+<td align="left">0.005 Rich to lean sensor threshold voltage</td>
+</tr>
+<tr>
+<td><tt>0110</tt></td>
+<td></td>
+<td align="left">O2 Sensor Monitor Bank 4 Sensor 4</td>
+<td>0.00</td>
+<td>1.275</td>
+<td>Volts</td>
+<td align="left">0.005 Rich to lean sensor threshold voltage</td>
+</tr>
+<tr>
+<td><tt>0201</tt></td>
+<td></td>
+<td align="left">O2 Sensor Monitor Bank 1 Sensor 1</td>
+<td>0.00</td>
+<td>1.275</td>
+<td>Volts</td>
+<td align="left">0.005 Lean to Rich sensor threshold voltage</td>
+</tr>
+<tr>
+<td><tt>0202</tt></td>
+<td></td>
+<td align="left">O2 Sensor Monitor Bank 1 Sensor 2</td>
+<td>0.00</td>
+<td>1.275</td>
+<td>Volts</td>
+<td align="left">0.005 Lean to Rich sensor threshold voltage</td>
+</tr>
+<tr>
+<td><tt>0203</tt></td>
+<td></td>
+<td align="left">O2 Sensor Monitor Bank 1 Sensor 3</td>
+<td>0.00</td>
+<td>1.275</td>
+<td>Volts</td>
+<td align="left">0.005 Lean to Rich sensor threshold voltage</td>
+</tr>
+<tr>
+<td><tt>0204</tt></td>
+<td></td>
+<td align="left">O2 Sensor Monitor Bank 1 Sensor 4</td>
+<td>0.00</td>
+<td>1.275</td>
+<td>Volts</td>
+<td align="left">0.005 Lean to Rich sensor threshold voltage</td>
+</tr>
+<tr>
+<td><tt>0205</tt></td>
+<td></td>
+<td align="left">O2 Sensor Monitor Bank 2 Sensor 1</td>
+<td>0.00</td>
+<td>1.275</td>
+<td>Volts</td>
+<td align="left">0.005 Lean to Rich sensor threshold voltage</td>
+</tr>
+<tr>
+<td><tt>0206</tt></td>
+<td></td>
+<td align="left">O2 Sensor Monitor Bank 2 Sensor 2</td>
+<td>0.00</td>
+<td>1.275</td>
+<td>Volts</td>
+<td align="left">0.005 Lean to Rich sensor threshold voltage</td>
+</tr>
+<tr>
+<td><tt>0207</tt></td>
+<td></td>
+<td align="left">O2 Sensor Monitor Bank 2 Sensor 3</td>
+<td>0.00</td>
+<td>1.275</td>
+<td>Volts</td>
+<td align="left">0.005 Lean to Rich sensor threshold voltage</td>
+</tr>
+<tr>
+<td><tt>0208</tt></td>
+<td></td>
+<td align="left">O2 Sensor Monitor Bank 2 Sensor 4</td>
+<td>0.00</td>
+<td>1.275</td>
+<td>Volts</td>
+<td align="left">0.005 Lean to Rich sensor threshold voltage</td>
+</tr>
+<tr>
+<td><tt>0209</tt></td>
+<td></td>
+<td align="left">O2 Sensor Monitor Bank 3 Sensor 1</td>
+<td>0.00</td>
+<td>1.275</td>
+<td>Volts</td>
+<td align="left">0.005 Lean to Rich sensor threshold voltage</td>
+</tr>
+<tr>
+<td><tt>020A</tt></td>
+<td></td>
+<td align="left">O2 Sensor Monitor Bank 3 Sensor 2</td>
+<td>0.00</td>
+<td>1.275</td>
+<td>Volts</td>
+<td align="left">0.005 Lean to Rich sensor threshold voltage</td>
+</tr>
+<tr>
+<td><tt>020B</tt></td>
+<td></td>
+<td align="left">O2 Sensor Monitor Bank 3 Sensor 3</td>
+<td>0.00</td>
+<td>1.275</td>
+<td>Volts</td>
+<td align="left">0.005 Lean to Rich sensor threshold voltage</td>
+</tr>
+<tr>
+<td><tt>020C</tt></td>
+<td></td>
+<td align="left">O2 Sensor Monitor Bank 3 Sensor 4</td>
+<td>0.00</td>
+<td>1.275</td>
+<td>Volts</td>
+<td align="left">0.005 Lean to Rich sensor threshold voltage</td>
+</tr>
+<tr>
+<td><tt>020D</tt></td>
+<td></td>
+<td align="left">O2 Sensor Monitor Bank 4 Sensor 1</td>
+<td>0.00</td>
+<td>1.275</td>
+<td>Volts</td>
+<td align="left">0.005 Lean to Rich sensor threshold voltage</td>
+</tr>
+<tr>
+<td><tt>020E</tt></td>
+<td></td>
+<td align="left">O2 Sensor Monitor Bank 4 Sensor 2</td>
+<td>0.00</td>
+<td>1.275</td>
+<td>Volts</td>
+<td align="left">0.005 Lean to Rich sensor threshold voltage</td>
+</tr>
+<tr>
+<td><tt>020F</tt></td>
+<td></td>
+<td align="left">O2 Sensor Monitor Bank 4 Sensor 3</td>
+<td>0.00</td>
+<td>1.275</td>
+<td>Volts</td>
+<td align="left">0.005 Lean to Rich sensor threshold voltage</td>
+</tr>
+<tr>
+<td><tt>0210</tt></td>
+<td></td>
+<td align="left">O2 Sensor Monitor Bank 4 Sensor 4</td>
+<td>0.00</td>
+<td>1.275</td>
+<td>Volts</td>
+<td align="left">0.005 Lean to Rich sensor threshold voltage</td>
+</tr>
+<tr>
+<th>PID<br />
+(hex)</th>
+<th>Data bytes returned</th>
+<th>Description</th>
+<th>Min value</th>
+<th>Max value</th>
+<th>Units</th>
+<th>Formula<sup id="cite_ref-formula_2-6" class="reference"><a href="#cite_note-formula-2"><span>[</span>a<span>]</span></a></sup></th>
+</tr>
+</table>
+<h3><span class="mw-headline" id="Mode_09">Mode <tt>09</tt></span><span class="mw-editsection"><span class="mw-editsection-bracket">[</span><a href="/w/index.php?title=OBD-II_PIDs&amp;action=edit&amp;section=8" title="Edit section: Mode 09">edit</a><span class="mw-editsection-bracket">]</span></span></h3>
+<table class="wikitable" style="text-align: center">
+<tr>
+<th>PID<br />
+(hex)</th>
+<th>Data bytes returned</th>
+<th>Description</th>
+<th>Min value</th>
+<th>Max value</th>
+<th>Units</th>
+<th>Formula<sup id="cite_ref-formula_2-7" class="reference"><a href="#cite_note-formula-2"><span>[</span>a<span>]</span></a></sup></th>
+</tr>
+<tr>
+<td><tt>00</tt></td>
+<td>4</td>
+<td align="left">Mode 9 supported PIDs (01 to 20)</td>
+<td></td>
+<td></td>
+<td></td>
+<td align="left">Bit encoded. [A7..D0] = [PID $01..PID $20] <a href="#Mode_1_PID_00">See below</a></td>
+</tr>
+<tr>
+<td><tt>01</tt></td>
+<td>1</td>
+<td align="left">VIN Message Count in PID <tt>02</tt>. Only for ISO 9141-2, ISO 14230-4 and SAE J1850.</td>
+<td></td>
+<td></td>
+<td></td>
+<td align="left">Usually value will be 5.</td>
+</tr>
+<tr>
+<td><tt>02</tt></td>
+<td>17-20</td>
+<td align="left"><a href="/wiki/Vehicle_Identification_Number" title="Vehicle Identification Number" class="mw-redirect">Vehicle Identification Number</a> (VIN)</td>
+<td></td>
+<td></td>
+<td></td>
+<td align="left">17-char VIN, ASCII-encoded and left-padded with null chars (<tt>0x00</tt>) if needed to.</td>
+</tr>
+<tr>
+<td><tt>03</tt></td>
+<td>1</td>
+<td align="left">Calibration ID message count for PID <tt>04</tt>. Only for ISO 9141-2, ISO 14230-4 and SAE J1850.</td>
+<td></td>
+<td></td>
+<td></td>
+<td align="left">It will be a multiple of 4 (4 messages are needed for each ID).</td>
+</tr>
+<tr>
+<td><tt>04</tt></td>
+<td>16</td>
+<td align="left">Calibration ID</td>
+<td></td>
+<td></td>
+<td></td>
+<td align="left">Up to 16 ASCII chars. Data bytes not used will be reported as null bytes (<tt>0x00</tt>).</td>
+</tr>
+<tr>
+<td><tt>05</tt></td>
+<td>1</td>
+<td align="left">Calibration verification numbers (CVN) message count for PID <tt>06</tt>. Only for ISO 9141-2, ISO 14230-4 and SAE J1850.</td>
+<td></td>
+<td></td>
+<td></td>
+<td align="left"></td>
+</tr>
+<tr>
+<td><tt>06</tt></td>
+<td>4</td>
+<td align="left">Calibration Verification Numbers (CVN)</td>
+<td></td>
+<td></td>
+<td></td>
+<td align="left">Raw data left-padded with null characters (<tt>0x00</tt>). Usually displayed as hex string.</td>
+</tr>
+<tr>
+<td><tt>07</tt></td>
+<td>1</td>
+<td align="left">In-use performance tracking message count for PID <tt>08</tt> and <tt>0B</tt>. Only for ISO 9141-2, ISO 14230-4 and SAE J1850.</td>
+<td>8</td>
+<td>10</td>
+<td></td>
+<td align="left">8 if sixteen (16) values are required to be reported, 9 if eighteen (18) values are required to be reported, and 10 if twenty (20) values are required to be reported (one message reports two values, each one consisting in two bytes).</td>
+</tr>
+<tr>
+<td><tt>08</tt></td>
+<td>4</td>
+<td align="left">In-use performance tracking for spark ignition vehicles</td>
+<td></td>
+<td></td>
+<td></td>
+<td align="left">4 or 5 messages, each one containing 4 bytes (two values). <a href="#Mode_9_PID_08">See below</a></td>
+</tr>
+<tr>
+<td><tt>09</tt></td>
+<td>1</td>
+<td align="left">ECU name message count for PID <tt>0A</tt></td>
+<td></td>
+<td></td>
+<td></td>
+<td align="left"></td>
+</tr>
+<tr>
+<td><tt>0A</tt></td>
+<td>20</td>
+<td align="left">ECU name</td>
+<td></td>
+<td></td>
+<td></td>
+<td align="left">ASCII-coded. Right-padded with null chars (<tt>0x00</tt>).</td>
+</tr>
+<tr>
+<td><tt>0B</tt></td>
+<td>4</td>
+<td align="left">In-use performance tracking for compression ignition vehicles</td>
+<td></td>
+<td></td>
+<td></td>
+<td align="left">5 messages, each one containing 4 bytes (two values). <a href="#Mode_9_PID_0B">See below</a></td>
+</tr>
+<tr>
+<th>PID<br />
+(hex)</th>
+<th>Data bytes returned</th>
+<th>Description</th>
+<th>Min value</th>
+<th>Max value</th>
+<th>Units</th>
+<th>Formula<sup id="cite_ref-formula_2-8" class="reference"><a href="#cite_note-formula-2"><span>[</span>a<span>]</span></a></sup></th>
+</tr>
+</table>
