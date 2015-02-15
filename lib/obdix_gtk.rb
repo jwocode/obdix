@@ -65,11 +65,14 @@ end
   eh.gtk = Gtk::Button.new(eh.ident + " " + eh.info[:desc])
   begin
    eh2 = Gtk::Button.new(eh.value)
-   eh3 = Gtk::Button.new(eh.info[:formula])
-#   eh4 = Gtk::Button.new(eh.rvalue.to_s)
-   
   rescue
    eh2 = Gtk::Button.new("Fehlerwert")
+  end   
+  begin  
+   eh3 = Gtk::Button.new(eh.info[:formula])
+#   eh4 = Gtk::Button.new(eh.rvalue.to_s)
+  rescue
+   eh3 = Gtk::Button.new("keine Formel")
   end   
   eh4 = Gtk::Button.new(eh.rvalue.to_s)
   eh.gtk.set_size_request 600, 30

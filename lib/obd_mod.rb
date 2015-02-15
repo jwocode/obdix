@@ -33,7 +33,9 @@ class Vclass < Mclass #Werte
   def get_value
    tmp = @fhandle.set_cmd(@ident).gsub(/(>| )/,"")
    @rvalue = tmp
-   @value = get_formel
+#   @value = get_formel
+   todo = find_formel
+   @value = eval(todo)
    begin
     puts "#{tmp} #{@ident} #{@info[:desc]} #{@info[:formula]} Wert= #{@value} "
 #    puts "#{tmp} #{@ident} #{@info[:desc]} #{@info[:formula]} #{@info[:unit] "
@@ -41,30 +43,6 @@ class Vclass < Mclass #Werte
      puts "#{tmp} #{@ident} xxxVclass"
    end 
   end   
- 
- def get_formel
-    get_value if @rvalue == nil  
-    if @info[:units] != ""
-      if true #a_formel.length > 0
-        begin 
-          p_str=@info[:formula]
-          p_str.gsub!("A",@rvalue[4..5].to_i(16).to_s)
-          p_str.gsub!("B",@rvalue[6..7].to_i(16).to_s)
-        rescue
-        end
-        begin
-         return eval(p_str).to_s
-        rescue SyntaxError => se
-         return "N/C"
-        end  
-      else 
-        return @wert
-      end 
-      return @wert
-    end
-    return @wert
-  end #getformel
-
 end
 
 class Pclass < Mclass

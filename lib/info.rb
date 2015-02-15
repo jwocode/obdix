@@ -28,9 +28,85 @@ class Dok
   end
  end #def
 end # class
- 
-# row = doc.search('//tr[td/tt = "01"]').collect
-# row = doc.at('//tr[td/tt = "04"]').collect
 
+class Formel
+  
+end
 
+def hxarr(ins)
+  return Hash[:a => ins[4..5],:b => ins[6..7],:c => ins[8..9],:d => ins[10..11]]
+#  return tmparr
+end
+
+def find_formel
+  specpid = ["01","03"]
+  if specpid.include? info[:title] 
+    return "p" + info[:title]
+  else
+   return "get_formelx"
+  end
+end
+
+def get_formelx
+    get_value if @rvalue == nil  
+    if @info[:units] != ""
+       begin 
+          p_str=@info[:formula]
+          p_str.gsub!("A",@rvalue[4..5].to_i(16).to_s)
+          p_str.gsub!("B",@rvalue[6..7].to_i(16).to_s)
+        rescue
+        end
+        begin
+         return eval(p_str).to_s
+        rescue SyntaxError => se
+         return "N/C"
+        end  
+      else 
+        return "N/C2"
+      end 
+      return @wert
+  end #getformel
+
+def p01
+  get_value if @rvalue == nil
+  tmp = hxarr(rvalue)
+  if (tmp[:a].hex & "80".hex) == 0
+    res = "MIL OFF "
+  else
+    res = "MIL ON! "
+  end
+  res +=  (tmp[:a].hex & "7F".hex).to_s + " Err\n"
+  if (tmp[:b].hex & "1000".to_i(2)) == 0
+    res += "Spark ignition"
+  else
+    res += "Compression ignition"
+  end
+  if (tmp[:b].hex & "1".to_i(2)) != 0
+    res += "\nMisfire "
+    if (tmp[:b].hex & "10000".to_i(2)) != 0 then res += "Test Pending" end
+  end
+  if (tmp[:b].hex & "10".to_i(2)) != 0
+    res += "\nFuel System "
+    if (tmp[:b].hex & "100000".to_i(2)) != 0 then res += "Test Pending" end
+  end
+  if (tmp[:b].hex & "100".to_i(2)) != 0
+    res += "\nComponents "
+    if (tmp[:b].hex & "1000000".to_i(2)) != 0 then res += "Test Pending" end
+  end
+  return res
+end
+
+def p03 #Fuel system Status
+  
+  
+  get_value if @rvalue == nil
+  tmp = hxarr(rvalue)
+  return {0 => "--",
+  1 =>"Open loop due to insufficient engine temperature", 
+  2 =>"Closed loop, using oxygen sensor feedback to determine fuel mix",
+  4 =>"Open loop due to engine load OR fuel cut due to deceleration",
+  8 =>"Open loop due to system failure",
+  16 =>"Closed loop, using at least one oxygen sensor but there is a fault in the feedback system"}[tmp[:a].hex].to_s
+end
+  
  
